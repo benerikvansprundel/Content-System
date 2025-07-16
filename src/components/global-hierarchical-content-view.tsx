@@ -8,7 +8,7 @@ import { cacheInvalidation } from '@/hooks/use-content'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { ContentAngle } from '@/types/database'
+import { ContentAngle, ContentAngleWithIdeas, ContentIdeaWithGenerated } from '@/types/database'
 import { 
   ChevronDown, 
   ChevronRight, 
@@ -205,17 +205,17 @@ export function GlobalHierarchicalContentView({ brands: initialBrands, userId }:
     }
   })
 
-  const getTotalIdeasCount = (angles: any[]) => {
+  const getTotalIdeasCount = (angles: ContentAngleWithIdeas[]) => {
     return angles.reduce((total, angle) => {
-      const ideas = (angle.content_ideas || []).filter(idea => idea.platform === angle.platform)
+      const ideas = (angle.content_ideas || []).filter((idea: ContentIdeaWithGenerated) => idea.platform === angle.platform)
       return total + ideas.length
     }, 0)
   }
 
-  const getGeneratedIdeasCount = (angles: any[]) => {
+  const getGeneratedIdeasCount = (angles: ContentAngleWithIdeas[]) => {
     return angles.reduce((total, angle) => {
-      const ideas = (angle.content_ideas || []).filter(idea => idea.platform === angle.platform)
-      const generatedCount = ideas.filter(idea => {
+      const ideas = (angle.content_ideas || []).filter((idea: ContentIdeaWithGenerated) => idea.platform === angle.platform)
+      const generatedCount = ideas.filter((idea: ContentIdeaWithGenerated) => {
         const hasContent = Boolean(idea.generated_content && idea.generated_content.length > 0)
         console.log(`Idea "${idea.topic}" has generated content:`, hasContent, idea.generated_content)
         return hasContent
