@@ -177,7 +177,7 @@ export function GlobalHierarchicalContentView({ brands: initialBrands, userId }:
       }
       acc[platform].push(angle)
       return acc
-    }, {} as Record<string, ContentAngle[]>)
+    }, {} as Record<string, ContentAngleWithIdeas[]>)
 
     const totalAngles = brand.content_angles?.length || 0
     const totalIdeas = (brand.content_angles || []).reduce((total, angle) => {
