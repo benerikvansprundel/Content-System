@@ -8,6 +8,7 @@ import { cacheInvalidation } from '@/hooks/use-content'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { ContentAngle } from '@/types/database'
 import { 
   ChevronDown, 
   ChevronRight, 
